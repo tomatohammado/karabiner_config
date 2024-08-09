@@ -1,26 +1,28 @@
 # Karabiner Configuration
 
-This repo is to sync my Karabiner settings between macOS devices.
+This repository contains my Karabiner settings for synchronization across macOS devices.
 
-Used my fork of a `.keyboard` repo for a while ([Source](https://github.com/tomatohammado/keyboard)). I no longer use hammerspoon, and so I wanted a lighter repo just for Karabiner.
+## Background
 
-## Snippet: Symlinking the karabiner config
+Previously, I used a forked `.keyboard` repository that included Hammerspoon configurations ([Source](https://github.com/tomatohammado/keyboard)). As I no longer use Hammerspoon, this repository focuses solely on Karabiner for a more streamlined setup.
 
-Adapted from the setup script from the old repo.
+## Setup Instructions
 
-```sh
-# Prepare custom settings for Karabiner-Elements
-# https://github.com/tekezo/Karabiner-Elements/issues/597#issuecomment-282760186
-mkdir -p ~/.config
-ln -sfn $PWD/karabiner ~/.config/karabiner
-```
+1. Clone this repository on your new machine.
 
-## Instructions
+2. Create a symlink for the Karabiner configuration:
 
-1. Clone this repo on a new machine.
+   ```sh
+   mkdir -p ~/.config
+   ln -sfn $PWD/karabiner ~/.config/karabiner
+   ```
 
-2. Run the snippet above. This will create a symlinked directory in the default locaton for Karabiner's config
+   - The symlink command creates a link between this repository and Karabiner's default configuration location.
 
-3. Install Karabiner. I'd probably use homebrew.
+3. Install Karabiner-Elements (recommended method: Homebrew)
 
-4. Profit?
+   ```sh
+   brew install --cask karabiner-elements
+   ```
+
+4. Open Karabiner-Elements. Your custom configurations should now be applied.
