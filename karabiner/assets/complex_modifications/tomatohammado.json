@@ -1,0 +1,252 @@
+{
+  "title": "tomatohammado mods",
+  "rules": [
+    {
+      "description": "Right Control to Escape on single press, Control on hold.",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "right_control",
+            "modifiers": { "optional": ["any"] }
+          },
+          "to": [{ "key_code": "right_control" }],
+          "to_if_alone": [{ "key_code": "escape" }]
+        }
+      ]
+    },
+    {
+      "description": "Spacebar-Command Mode: Spacebar + Right Shift to Right Command",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": { "mandatory": ["right_shift"] }
+          },
+          "to_if_held_down": [{ "key_code": "right_command" }],
+          "to": [
+            { "set_variable": { "name": "spacebar_command_mode", "value": 1 } }
+          ],
+          "to_after_key_up": [
+            { "set_variable": { "name": "spacebar_command_mode", "value": 0 } }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_shift",
+            "modifiers": { "optional": ["right_command"] }
+          },
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "spacebar_command_mode",
+              "value": 1
+            }
+          ],
+          "to": [{ "key_code": "spacebar" }]
+        }
+      ]
+    },
+    {
+      "description": "Spacebar-Command Mode: Spacebar + Left Shift to Left Command",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": { "mandatory": ["left_shift"] }
+          },
+          "to_if_held_down": [{ "key_code": "left_command" }],
+          "to": [
+            { "set_variable": { "name": "spacebar_command_mode", "value": 1 } }
+          ],
+          "to_after_key_up": [
+            { "set_variable": { "name": "spacebar_command_mode", "value": 0 } }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "right_shift",
+            "modifiers": { "optional": ["left_command"] }
+          },
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "spacebar_command_mode",
+              "value": 1
+            }
+          ],
+          "to": [{ "key_code": "spacebar" }]
+        }
+      ]
+    },
+    {
+      "description": "Colemak Vimish Navigation: Activate via Left Shift + Space",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": { "mandatory": ["left_shift"] }
+          },
+          "to": [
+            { "set_variable": { "name": "colemak_vimish_nav", "value": 1 } }
+          ],
+          "to_after_key_up": [
+            { "set_variable": { "name": "colemak_vimish_nav", "value": 0 } }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Colemak Vimish Navigation: Arrows, Page Up/Down, Home/End",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "n" },
+          "conditions": [
+            { "type": "variable_if", "name": "colemak_vimish_nav", "value": 1 }
+          ],
+          "to": [{ "key_code": "down_arrow" }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "n", "modifiers": { "mandatory": ["shift"] } },
+          "conditions": [
+            { "type": "variable_if", "name": "colemak_vimish_nav", "value": 1 }
+          ],
+          "to": [{ "key_code": "5" }, { "key_code": "down_arrow" }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "e" },
+          "conditions": [
+            { "type": "variable_if", "name": "colemak_vimish_nav", "value": 1 }
+          ],
+          "to": [{ "key_code": "up_arrow" }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "e", "modifiers": { "mandatory": ["shift"] } },
+          "conditions": [
+            { "type": "variable_if", "name": "colemak_vimish_nav", "value": 1 }
+          ],
+          "to": [{ "key_code": "5" }, { "key_code": "up_arrow" }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "i" },
+          "conditions": [
+            { "type": "variable_if", "name": "colemak_vimish_nav", "value": 1 }
+          ],
+          "to": [{ "key_code": "right_arrow" }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "m" },
+          "conditions": [
+            { "type": "variable_if", "name": "colemak_vimish_nav", "value": 1 }
+          ],
+          "to": [{ "key_code": "left_arrow" }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "l" },
+          "conditions": [
+            { "type": "variable_if", "name": "colemak_vimish_nav", "value": 1 }
+          ],
+          "to": [{ "key_code": "page_down" }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "u" },
+          "conditions": [
+            { "type": "variable_if", "name": "colemak_vimish_nav", "value": 1 }
+          ],
+          "to": [{ "key_code": "page_up" }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "h" },
+          "conditions": [
+            { "type": "variable_if", "name": "colemak_vimish_nav", "value": 1 }
+          ],
+          "to": [{ "key_code": "end" }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "comma" },
+          "conditions": [
+            { "type": "variable_if", "name": "colemak_vimish_nav", "value": 1 }
+          ],
+          "to": [{ "key_code": "home" }]
+        }
+      ]
+    },
+    {
+      "description": "Double Quotes for simultaneous Cmd + Single Quote",
+      "manipulators": [
+        {
+          "type": "basic",
+          "parameters": {
+            "basic.simultaneous_threshold_milliseconds": 110
+          },
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "left_command"
+              },
+              {
+                "key_code": "quote"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict",
+              "key_up_order": "strict"
+            }
+          },
+          "to": [
+            {
+              "key_code": "quote",
+              "modifiers": ["left_shift"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Question Mark for simultaneous Cmd + Slash",
+      "manipulators": [
+        {
+          "type": "basic",
+          "parameters": {
+            "basic.simultaneous_threshold_milliseconds": 110
+          },
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "left_command"
+              },
+              {
+                "key_code": "slash"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict",
+              "key_up_order": "strict"
+            }
+          },
+          "to": [
+            {
+              "key_code": "slash",
+              "modifiers": ["left_shift"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
